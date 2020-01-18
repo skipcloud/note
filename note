@@ -7,8 +7,11 @@
 # the top level of your notes directory with the name you've specified. If
 # called without an argument it will open the directory for you to browse.
 #
-# usage: note [--list|-l] [--search|-s <name>] [--text-search|-t <text...>] [<name>]
-#
+# usage: note [--help|-h]
+#             [--list|-l]
+#             [--search|-s <name>]
+#             [--text-search|-t <text...>]
+#             [<name>]
 
 notes_dir="${NOTES_DIR:-$HOME/.notes}"
 file=
@@ -69,7 +72,13 @@ search_text() {
 
 # usage() prints the usage, duh.
 usage() {
-  echo "notes [--list | <file>]"
+  echo "
+  usage: note [--help|-h]
+              [--list|-l]
+              [--search|-s <name>]
+              [--text-search|-t <text...>]
+              [<name>]
+"
 }
 
 if [ ! -d $notes_dir ]; then
@@ -96,6 +105,10 @@ case "$1" in
   --)
     shift
     find_file $1
+    ;;
+  --help | -t)
+    usage
+    exit 0
     ;;
   -*)
     error "unknown option"

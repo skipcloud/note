@@ -23,6 +23,9 @@ options for simple searching.
 
 `note [--list|-l] [--search|-s <name>] [--text-search|-t <text...>] [--] [<name>]`
 
+`note` on its own will open the directory. Behaviour is dependent on your
+editor.
+
 `note [--] <name>` will look in your notes directory for a note with that name, if it
 doesn't find one it will create a new one. If there are multiple notes with that
 name you are presented with a choice. The `--` will enable you to have dashes at
@@ -35,8 +38,7 @@ name.
 
 `note --text-search <text...>` will search your notes for that text using grep.
 
-`note` on its own will open the directory. Behaviour is dependent on your
-editor.
+`note --help` will display command usage.
 
 ## Customise
 
