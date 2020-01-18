@@ -21,11 +21,12 @@ options for simple searching.
 
 ## Usage
 
-`note [--list|-l] [--search|-s <name>] [--text-search|-t <text...>] [<name>]`
+`note [--list|-l] [--search|-s <name>] [--text-search|-t <text...>] [--] [<name>]`
 
-`note <name>` will look in your notes directory for a note with that name, if it
+`note [--] <name>` will look in your notes directory for a note with that name, if it
 doesn't find one it will create a new one. If there are multiple notes with that
-name you are presented with a choice.
+name you are presented with a choice. The `--` will enable you to have dashes at
+the start of your note name.
 
 `note --list` will display all the notes in your notes directory.
 
