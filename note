@@ -97,7 +97,7 @@ case "$1" in
     search_notes $2
     exit $?
     ;;
-  --text-search|-t)
+  --text-search | -t)
     shift
     search_text "$@"
     exit $?
