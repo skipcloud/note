@@ -11,9 +11,12 @@ options for simple searching.
 ## Installation
 
 * Download the repo.
-* Run `make install` to symlink the script to `/usr/local/bin`, you might need to use
-`sudo` to make create the link.
-* Set `NOTES_DIR` or run `make directory` to create `$HOME/.notes`.
+* Run `make all` if you are happy with the default place for the script
+  (`/usr/local/bin`) and the default directory to store the notes
+  (`$HOME/.notes`). Otherwise read on.
+* Ensure the script is in your `$PATH`. You can run `make install` to symlink
+  the script to `/usr/local/bin`.
+* By default notes are kept in `$HOME/.notes`, run `make directory` to create it. Alternatively if you know where you want your notes to live then export an environment variable called `NOTES_DIR` with the path to your chosen directory.
 * Take some notes.
 
 ## Usage
