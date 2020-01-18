@@ -2,8 +2,8 @@
 
 Who needs a dedicated note taking application when you probably have already
 have a text editor on your computer that you like to use? All you need is a
-small command to create a new note, edit an existing one, search for a note, or
-list the ones you have.
+small command to help you create, edit, search for/through, or list the ones you
+have.
 
 ## Installation
 
