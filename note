@@ -93,6 +93,10 @@ case "$1" in
     search_text "$@"
     exit $?
     ;;
+  --)
+    shift
+    find_file $1
+    ;;
   -*)
     error "unknown option"
     exit 1
