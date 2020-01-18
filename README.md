@@ -2,14 +2,18 @@
 
 Who needs a dedicated note taking application when you probably have already
 have a text editor on your computer that you like to use? All you need is a
-small command to help you create, edit, search for/through, or list the ones you
-have.
+small command to help you create or edit notes.
+
+This is a small script that works in conjunction with your editor to do just
+that. It will keep all your notes in a directory of your choosing and has some
+options for simple searching.
 
 ## Installation
 
 * Download the repo.
-* Run `make` to symlink the script to `/usr/local/bin`, you might need to use
+* Run `make install` to symlink the script to `/usr/local/bin`, you might need to use
 `sudo` to make create the link.
+* Set `NOTES_DIR` or run `make directory` to create `$HOME/.notes`.
 * Take some notes.
 
 ## Usage
