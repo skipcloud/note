@@ -59,12 +59,12 @@ print_notes() {
 # search_notes() will search the notes directory for a file with
 # the specified name
 search_notes() {
-  find -type f -iname '*'"$1"'*' -printf "%P\n" | sort 
+  find -type f -iname '*'"$1"'*' -printf "%P\n" | sort
 }
 
 # search_text() will search the text of notes looking for the given text
 search_text() {
-  grep -FHiRT --color -C1 "$@" 
+  grep -FHiRT --color -C1 "$*"
 }
 
 # usage() prints the usage, duh.
