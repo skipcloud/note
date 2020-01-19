@@ -119,4 +119,9 @@ case "$1" in
     ;;
 esac
 
+# Set markdown extension unless overridden by the env var
+if [ -z "$NO_NOTE_EXT" ] && grep -vE '\.md$' <<< $file; then
+  file=$file.md
+fi
+
 ${EDITOR:-vim} $notes_dir/$file

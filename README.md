@@ -6,7 +6,8 @@ small command to help you create or edit notes.
 
 This is a small script that works in conjunction with your editor to do just
 that. It will keep all your notes in a directory of your choosing and has some
-options for simple searching.
+options for simple searching. The notes will be created with the markdown
+extension unless overridden by an [environment variable](#customise)
 
 ## Installation
 
@@ -47,3 +48,6 @@ default.
 
 Set `NOTES_DIR` to specify where you want to keep your notes, the default is
 `$HOME/.notes`
+
+Set `NO_NOTE_EXT` to anything at all if you don't want the markdown extension
+added to your files.
