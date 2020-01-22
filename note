@@ -119,8 +119,9 @@ case "$1" in
     ;;
 esac
 
-# Set markdown extension unless overridden by the env var
-if [ -z "$NO_NOTE_EXT" ] && grep -vE '\.md$' <<< $file; then
+# Set markdown extension unless overridden by the env var and
+# a file name has been provided
+if [ -z "$NO_NOTE_EXT" ] && [ "$file" ] && grep -vE '\.md$' <<< $file; then
   file=$file.md
 fi
 
