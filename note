@@ -121,7 +121,10 @@ esac
 
 # Set markdown extension unless overridden by the env var and
 # a file name has been provided
-if [ -z "$NO_NOTE_EXT" ] && [ "$file" ] && grep -vE '\.md$' <<< $file; then
+if [ -z "$NO_NOTE_EXT" ] &&
+   [ -n "$file" ] &&
+   grep -vE '\.md$' <<< $file > /dev/null; then
+
   file=$file.md
 fi
 
