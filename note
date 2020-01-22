@@ -25,17 +25,17 @@ error() {
 # input. If one is found then it will be chosen, if more than one is found the
 # user is presented with a selection to choose from.
 find_file() {
+    file=$1
   # readable file? no point searching, use it
   if [ -r "$1" ]; then
-    file=$1
     return
   fi
-  local search=$(find -type f -iname "$1" -printf "%P\n")
+
+  local search=$(find -type f -iname "$1" -o -iname "$1.md" -printf "%P\n")
   local file_count=$(wc -l <<< $search)
 
   # no file found, let's create a new one
   if [ -z "$search" ]; then
-    file=$1
     return
   fi
 
