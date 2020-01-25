@@ -22,7 +22,13 @@ extension unless overridden by an [environment variable](#customise)
 
 ## Usage
 
-`note [--list|-l] [--search|-s <name>] [--text-search|-t <text...>] [--] [<name>]`
+```
+note [--list|-l]
+     [--search|-s <name>]
+     [--text-search|-t <text...>]
+     [--delete|-d <name>]
+     [--] [<name>]
+```
 
 `note` on its own will open the directory. Behaviour is dependent on your
 editor.
@@ -38,6 +44,8 @@ the start of your note name.
 name.
 
 `note --text-search <text...>` will search your notes for that text using grep.
+
+`note --delete <name>` will attempt to delete that note.
 
 `note --help` will display command usage.
 
