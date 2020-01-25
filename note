@@ -11,10 +11,37 @@
 #             [--list|-l]
 #             [--search|-s <name>]
 #             [--text-search|-t <text...>]
+#             [ --delete|-d <name> ]
 #             [<name>]
 
 notes_dir="${NOTES_DIR:-$HOME/.notes}"
 file=
+
+# check_not_empty() will ensure the argument is not empty.
+# if it then print an error, print usage, and exit
+check_not_empty() {
+  if [ -z "$1" ]; then
+    error "missing argument"
+    usage
+    exit 1
+  fi
+}
+
+# delete_file() will attempt to delete a file, raising an error
+# if it cannot do so.
+delete_file() {
+  find_file $1
+  if [ $? != 0 ]; then
+    error "'$file' not found"
+    exit 1
+  fi
+  if ! rm $file; then
+    error "problem deleting file '$file'"
+    exit 1
+  fi
+  echo "'$file' deleted"
+  exit 0
+}
 
 # error() prints the error to stdout
 error() {
@@ -25,10 +52,10 @@ error() {
 # input. If one is found then it will be chosen, if more than one is found the
 # user is presented with a selection to choose from.
 find_file() {
-    file=$1
+  file=$1
   # readable file? no point searching, use it
   if [ -r "$1" ]; then
-    return
+    return 0
   fi
 
   local search=$(find -type f -iname "$1" -o -iname "$1.md" -printf "%P\n")
@@ -36,13 +63,13 @@ find_file() {
 
   # no file found, let's create a new one
   if [ -z "$search" ]; then
-    return
+    return 1
   fi
 
   # the file exists so use that one
   if [ $file_count = 1 ]; then
     file=$search
-    return
+    return 0
   fi
 
   PS3="More than one file found, which one? "
@@ -52,6 +79,7 @@ find_file() {
       break
     fi
   done
+  return 0
 }
 
 # print_notes() prints all notes in the notes directory
@@ -77,6 +105,7 @@ usage() {
               [--list|-l]
               [--search|-s <name>]
               [--text-search|-t <text...>]
+              [ --delete|-d <name> ]
               [<name>]
 "
 }
@@ -94,13 +123,21 @@ case "$1" in
     exit 0
     ;;
   --search | -s)
-    search_notes $2
+    shift
+    check_not_empty $1
+    search_notes $1
     exit $?
     ;;
   --text-search | -t)
     shift
+    check_not_empty $1
     search_text "$@"
     exit $?
+    ;;
+  --delete | -d)
+    shift
+    check_not_empty $1
+    delete_file $1
     ;;
   --)
     shift
