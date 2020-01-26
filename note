@@ -141,7 +141,9 @@ case "$1" in
     ;;
   --)
     shift
-    find_file $1
+    if [ -n "$1" ]; then
+      find_file $1
+    fi
     ;;
   --help | -t)
     usage
