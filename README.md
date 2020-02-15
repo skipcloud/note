@@ -7,8 +7,9 @@ small command to help you create or edit notes.
 This is a small script that works in conjunction with your editor to do just
 that. It will keep all your notes in a directory of your choosing and has some
 options for simple searching, the notes will be created with the markdown
-extension unless told otherwise, check out the [customise](#customise) section
-for more details.
+extension unless specify one when creating your note, check out the
+[customise](#customise) section for more details to change the default
+extension.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -34,7 +35,6 @@ note [--help|-h]
      [--search|-s <name>]
      [--text-search|-t <text...>]
      [--delete|-d <name>]
-     [--no-extension|-n <name-with-ext>]
      [--] [<name>]
 ```
 
@@ -54,9 +54,6 @@ name.
 `note --text-search <text...>` will search your notes for that text using grep.
 
 `note --delete <name>` will attempt to delete that note.
-
-`note --no-extension <name-with-ext>` will create a new note without adding
-an extension, this is useful if you want to provide one, i.e. `note -n file.c`
 
 `note --help` will display command usage.
 
