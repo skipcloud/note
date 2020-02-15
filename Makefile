@@ -6,6 +6,12 @@ install:
 	@ln -sf ${TARGET} ${LINK}
 directory:
 	@mkdir "${HOME}/.notes"
-all: install directory
+generate/zsh-completion:
+	@sh .make/generate-completion.sh
+install/zsh-completion:
+	@sh .make/generate-completion.sh
+	@sh .make/setup-zsh-completion.sh
+
+all: install directory generate/zsh-completion install/zsh-completion
 
 .PHONY: install directory
