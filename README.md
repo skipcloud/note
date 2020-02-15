@@ -9,6 +9,11 @@ that. It will keep all your notes in a directory of your choosing and has some
 options for simple searching. The notes will be created with the markdown
 extension unless overridden by an [environment variable](#customise)
 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Customise](#customise)
+- [Command completion](#command-completion)
+
 ## Installation
 
 * Download the repo.
@@ -59,3 +64,24 @@ Set `NOTES_DIR` to specify where you want to keep your notes, the default is
 
 Set `NO_NOTE_EXT` to anything at all if you don't want the markdown extension
 added to your files.
+
+## Command completion
+
+Currently there is only support for `zsh` command completion. It will present
+options available to you and the complete the names of notes you have in your
+notes directory.
+
+To set yourself up run `make install/zsh-completion` which will:
+* create a directory called `.zsh_completions` in your home directory.
+* generate the completion file and symlink from `.zsh_completions` to it.
+* add a few lines to your `.zshrc` to add `.zsh_completion` to your `$fpath`
+  which is what zsh uses to find completion files for commands.
+
+If you have already set up custom command completion before or you have
+somewhere you like to put completion files then run `make
+generate/zsh-completion` to generate the completion file in the
+[`/completion/zsh`](/completion/zsh/) directory.  Symlink to this file from
+which ever directory you keep your completion files.
+
+Be sure to reload your shell so zsh picks up this new completions file and
+you're good to go.
