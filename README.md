@@ -6,8 +6,9 @@ small command to help you create or edit notes.
 
 This is a small script that works in conjunction with your editor to do just
 that. It will keep all your notes in a directory of your choosing and has some
-options for simple searching. The notes will be created with the markdown
-extension unless overridden by an [environment variable](#customise)
+options for simple searching, the notes will be created with the markdown
+extension unless told otherwise, check out the [customise](#customise) section
+for more details.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -28,10 +29,12 @@ extension unless overridden by an [environment variable](#customise)
 ## Usage
 
 ```
-note [--list|-l]
+note [--help|-h]
+     [--list|-l]
      [--search|-s <name>]
      [--text-search|-t <text...>]
      [--delete|-d <name>]
+     [--no-extension|-n <name-with-ext>]
      [--] [<name>]
 ```
 
@@ -52,6 +55,9 @@ name.
 
 `note --delete <name>` will attempt to delete that note.
 
+`note --no-extension <extension> <name>` will create a new note without adding
+an extension, this is useful if you want to provide one, i.e. `note -n file.c`
+
 `note --help` will display command usage.
 
 ## Customise
@@ -62,8 +68,8 @@ default.
 Set `NOTES_DIR` to specify where you want to keep your notes, the default is
 `$HOME/.notes`
 
-Set `NO_NOTE_EXT` to anything at all if you don't want the markdown extension
-added to your files.
+Set `NOTE_EXT` to specify which extension you would like new notes to have, the
+default is `md`.
 
 ## Command completion
 

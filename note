@@ -12,8 +12,11 @@
 #             [--search|-s <name>]
 #             [--text-search|-t <text...>]
 #             [ --delete|-d <name> ]
-#             [<name>]
+#             [--no-extension|-n <name-with-ext>]
+#             [--] [<name>]
 
+ext=${NOTE_EXT:-md}
+no_ext=
 notes_dir="${NOTES_DIR:-$HOME/.notes}"
 file=
 
@@ -106,7 +109,8 @@ usage() {
               [--search|-s <name>]
               [--text-search|-t <text...>]
               [ --delete|-d <name> ]
-              [<name>]
+              [--no-extension|-n <name-with-ext>]
+              [--] [<name>]
 "
 }
 
@@ -139,6 +143,12 @@ case "$1" in
     check_not_empty $1
     delete_file $1
     ;;
+  --no-extension | -n)
+    shift
+    no_ext=true
+    check_not_empty $1
+    file=$1
+    ;;
   --)
     shift
     find_file $1
@@ -158,11 +168,9 @@ esac
 
 # Set markdown extension unless overridden by the env var and
 # a file name has been provided
-if [ -z "$NO_NOTE_EXT" ] &&
-   [ -n "$file" ] &&
-   grep -vE '\.md$' <<< $file > /dev/null; then
-
-  file=$file.md
+if [ -n "$file" ] && [ ! "$no_ext" ] && grep -vE "\.$ext$" <<< $file > /dev/null; then
+  echo $no_ext
+  file=$file.$ext
 fi
 
 ${EDITOR:-vim} $notes_dir/$file
