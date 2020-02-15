@@ -12,7 +12,6 @@
 #             [--search|-s <name>]
 #             [--text-search|-t <text...>]
 #             [ --delete|-d <name> ]
-#             [--no-extension|-n <name-with-ext>]
 #             [--] [<name>]
 
 ext=${NOTE_EXT:-md}
@@ -109,7 +108,6 @@ usage() {
               [--search|-s <name>]
               [--text-search|-t <text...>]
               [ --delete|-d <name> ]
-              [--no-extension|-n <name-with-ext>]
               [--] [<name>]
 "
 }
@@ -162,9 +160,8 @@ esac
 
 # Set extension if
 # - a file name has been provided
-# - the --no-extension option wasn't provided
 # - the file name doesn't have a . followed by anything
-if [ -n "$file" ] && [ ! "$no_ext" ] && grep -vE "\..*$" <<< $file > /dev/null; then
+if [ -n "$file" ] && grep -vE "\..*$" <<< $file > /dev/null; then
   echo $ext
 
   file=$file.$ext
