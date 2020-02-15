@@ -77,17 +77,8 @@ Currently there is only support for `zsh` command completion. It will present
 options available to you and the complete the names of notes you have in your
 notes directory.
 
-To set yourself up run `make install/zsh-completion` which will:
-* create a directory called `.zsh_completions` in your home directory.
-* generate the completion file and symlink from `.zsh_completions` to it.
-* add a few lines to your `.zshrc` to add `.zsh_completion` to your `$fpath`
-  which is what zsh uses to find completion files for commands.
-
-If you have already set up custom command completion before or you have
-somewhere you like to put completion files then run `make
-generate/zsh-completion` to generate the completion file in the
-[`/completion/zsh`](/completion/zsh/) directory.  Symlink to this file from
-which ever directory you keep your completion files.
-
-Be sure to reload your shell so zsh picks up this new completions file and
-you're good to go.
+- Generate the completion file by running `make generate/zsh-completion`.
+- Run `make install/zsh-completion` to symlink to the newly created completion
+  file from `/usr/local/share/zsh/site-functions`. It uses sudo to create the
+  symlink, so you will be asked for your password.
+- Reload your shell.

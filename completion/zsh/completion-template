@@ -1,30 +1,11 @@
 #compdef note
 
-local context state state_descr line
-typeset -A opt_args
 local -a files=($(find NOTE_DIR -path NOTE_DIR/.git -prune -o -type f -printf '%P '))
 
-_arguments '--help[display command usage]' \
-           '-h[display command usage]' \
-           '--search[search for a note]' \
-           '-s[search for a note]' \
-           '--text-search[search for text in your notes]' \
-           '-t[search for text in your notes]' \
-           '--delete[delete a note]' \
-           '-d[delete a note]' \
-           '1:name:->name'
+_arguments -S -C {-h,--help}'[display command usage]'\
+           {-s,--search}'[search for a note]'\
+           {-t,--text-search}'[search for text in your notes]'\
+           {-d,--delete}'[delete a note]'\
+           {-n,--no-extension}'[no extension]'\
+             "*:name:($files)"
   
-case $state in
-  name )
-    if [ ${#words[@]} -gt 2 ]; then
-      case $words[2] in
-        --search | -s | --delete | -d)
-        compadd "$@" $files
-        ;;
-      esac
-    else
-      compadd "$@" $files
-    fi
-    ;;
-esac
-
