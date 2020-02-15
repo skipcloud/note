@@ -55,7 +55,7 @@ name.
 
 `note --delete <name>` will attempt to delete that note.
 
-`note --no-extension <extension> <name>` will create a new note without adding
+`note --no-extension <name-with-ext>` will create a new note without adding
 an extension, this is useful if you want to provide one, i.e. `note -n file.c`
 
 `note --help` will display command usage.
