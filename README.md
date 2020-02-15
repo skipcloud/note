@@ -6,8 +6,9 @@ small command to help you create or edit notes.
 
 This is a small script that works in conjunction with your editor to do just
 that. It will keep all your notes in a directory of your choosing and has some
-options for simple searching. The notes will be created with the markdown
-extension unless overridden by an [environment variable](#customise)
+options for simple searching, the notes will be created with the markdown
+extension unless told otherwise, check out the [customise](#customise) section
+for more details.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -28,10 +29,12 @@ extension unless overridden by an [environment variable](#customise)
 ## Usage
 
 ```
-note [--list|-l]
+note [--help|-h]
+     [--list|-l]
      [--search|-s <name>]
      [--text-search|-t <text...>]
      [--delete|-d <name>]
+     [--no-extension|-n <name-with-ext>]
      [--] [<name>]
 ```
 
@@ -52,6 +55,9 @@ name.
 
 `note --delete <name>` will attempt to delete that note.
 
+`note --no-extension <extension> <name>` will create a new note without adding
+an extension, this is useful if you want to provide one, i.e. `note -n file.c`
+
 `note --help` will display command usage.
 
 ## Customise
@@ -62,8 +68,8 @@ default.
 Set `NOTES_DIR` to specify where you want to keep your notes, the default is
 `$HOME/.notes`
 
-Set `NO_NOTE_EXT` to anything at all if you don't want the markdown extension
-added to your files.
+Set `NOTE_EXT` to specify which extension you would like new notes to have, the
+default is `md`.
 
 ## Command completion
 
@@ -71,17 +77,8 @@ Currently there is only support for `zsh` command completion. It will present
 options available to you and the complete the names of notes you have in your
 notes directory.
 
-To set yourself up run `make install/zsh-completion` which will:
-* create a directory called `.zsh_completions` in your home directory.
-* generate the completion file and symlink from `.zsh_completions` to it.
-* add a few lines to your `.zshrc` to add `.zsh_completion` to your `$fpath`
-  which is what zsh uses to find completion files for commands.
-
-If you have already set up custom command completion before or you have
-somewhere you like to put completion files then run `make
-generate/zsh-completion` to generate the completion file in the
-[`/completion/zsh`](/completion/zsh/) directory.  Symlink to this file from
-which ever directory you keep your completion files.
-
-Be sure to reload your shell so zsh picks up this new completions file and
-you're good to go.
+- Generate the completion file by running `make generate/zsh-completion`.
+- Run `make install/zsh-completion` to symlink to the newly created completion
+  file from `/usr/local/share/zsh/site-functions`. It uses sudo to create the
+  symlink, so you will be asked for your password.
+- Reload your shell.
