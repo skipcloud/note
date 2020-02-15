@@ -78,4 +78,5 @@ notes directory.
 - Run `make install/zsh-completion` to symlink to the newly created completion
   file from `/usr/local/share/zsh/site-functions`. It uses sudo to create the
   symlink, so you will be asked for your password.
-- Reload your shell.
+- Reload your shell. If command completion isn't working you may need to add
+  `compinit` to your `.zshrc` file. `echo compinit >> ~/.zshrc; source ~/.zshrc`
