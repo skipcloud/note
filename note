@@ -143,12 +143,6 @@ case "$1" in
     check_not_empty $1
     delete_file $1
     ;;
-  --no-extension | -n)
-    shift
-    no_ext=true
-    check_not_empty $1
-    file=$1
-    ;;
   --)
     shift
     find_file $1
@@ -166,10 +160,13 @@ case "$1" in
     ;;
 esac
 
-# Set markdown extension unless overridden by the env var and
-# a file name has been provided
-if [ -n "$file" ] && [ ! "$no_ext" ] && grep -vE "\.$ext$" <<< $file > /dev/null; then
-  echo $no_ext
+# Set extension if
+# - a file name has been provided
+# - the --no-extension option wasn't provided
+# - the file name doesn't have a . followed by anything
+if [ -n "$file" ] && [ ! "$no_ext" ] && grep -vE "\..*$" <<< $file > /dev/null; then
+  echo $ext
+
   file=$file.$ext
 fi
 
