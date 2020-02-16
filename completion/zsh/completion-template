@@ -6,6 +6,5 @@ _arguments -S -C {-h,--help}'[display command usage]'\
            {-s,--search}'[search for a note]'\
            {-t,--text-search}'[search for text in your notes]'\
            {-d,--delete}'[delete a note]'\
-           {-n,--no-extension}'[no extension]'\
              "*:name:($files)"
   
