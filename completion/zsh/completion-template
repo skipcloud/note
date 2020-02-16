@@ -3,6 +3,7 @@
 local -a files=($(find NOTE_DIR -path NOTE_DIR/.git -prune -o -type f -printf '%P '))
 
 _arguments -S -C {-h,--help}'[display command usage]'\
+           {-l,--list}'[list all notes]'\
            {-s,--search}'[search for a note]'\
            {-t,--text-search}'[search for text in your notes]'\
            {-d,--delete}'[delete a note]'\
