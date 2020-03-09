@@ -60,7 +60,7 @@ find_file() {
     return 0
   fi
 
-  local search=$(find -type f -not -path './.git' -iname "$1" -o -iname "$1.md" -printf "%P\n")
+  local search=$(find -type f -not -path './.git' -iwholename "$1" -o -iwholename "$1.md" -printf "%P\n")
   local file_count=$(wc -l <<< $search)
 
   # no file found, let's create a new one
@@ -92,7 +92,7 @@ print_notes() {
 # search_notes() will search the notes directory for a file with
 # the specified name
 search_notes() {
-  find -type f -iname '*'"$1"'*' -printf "%P\n" | sort
+  find -type f -iwholename '*'"$1"'*' -printf "%P\n" | sort
 }
 
 # search_text() will search the text of notes looking for the given text
