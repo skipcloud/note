@@ -162,8 +162,6 @@ esac
 # - a file name has been provided
 # - the file name doesn't have a . followed by anything
 if [ -n "$file" ] && grep -vE "\..*$" <<< $file > /dev/null; then
-  echo $ext
-
   file=$file.$ext
 fi
 
