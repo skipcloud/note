@@ -12,6 +12,7 @@
 #             [--search|-s <name>]
 #             [--text-search|-t <text...>]
 #             [ --delete|-d <name> ]
+#             [ --print|-p <name> ]
 #             [--] [<name>]
 
 ext=${NOTE_EXT:-md}
@@ -100,6 +101,15 @@ search_text() {
   grep -FHiRT --color -C1 "$*"
 }
 
+# print_note() prints the note to standard out
+print_note() {
+  find_file $1
+  if [ $? != 0 ]; then
+    error "file '$1' not found"
+  fi
+  cat $1
+}
+
 # usage() prints the usage, duh.
 usage() {
   echo "
@@ -107,6 +117,7 @@ usage() {
               [--list|-l]
               [--search|-s <name>]
               [--text-search|-t <text...>]
+              [--print|-p <name>]
               [ --delete|-d <name> ]
               [--] [<name>]
 "
@@ -140,6 +151,12 @@ case "$1" in
     shift
     check_not_empty $1
     delete_file $1
+    ;;
+  --print | -p)
+    shift
+    check_not_empty $1
+    print_note $1
+    exit 0
     ;;
   --)
     shift
