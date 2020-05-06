@@ -34,6 +34,7 @@ note [--help|-h]
      [--list|-l]
      [--search|-s <name>]
      [--text-search|-t <text...>]
+     [--print|-p <name>]
      [--delete|-d <name>]
      [--] [<name>]
 ```
@@ -54,6 +55,8 @@ name.
 `note --text-search <text...>` will search your notes for that text using grep.
 
 `note --delete <name>` will attempt to delete that note.
+
+`note --print <name>` will print the note to standard out
 
 `note --help` will display command usage.
 
